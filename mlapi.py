@@ -6,7 +6,7 @@ from datetime import datetime
 
 app = FastAPI()
     
-@app.get("/")
+@app.post("/")
 async def gatherPredict_data(AddressEther:str):
     api_key = "WY5W2MXQZBTUJZET6TQSNS5XXMU1NBBKH1"
     address = AddressEther.lower()
