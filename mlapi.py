@@ -116,7 +116,7 @@ async def gatherPredict_data(AddressEther:str):
 
     Predict = model.predict([PredictArray])
         
-    return Predict
+    return {"Prediction: ":int(Predict)}
 
 
 
