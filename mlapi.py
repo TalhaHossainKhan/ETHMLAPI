@@ -75,7 +75,7 @@ async def gatherPredict_data(AddressEther:str):
             
         if to_addresses[i] == address: 
             received_minute.append(diff)
-            received_val.append(values[])
+            received_val.append(values[i])
 
     # Calculate the average of values in sent_minute and received_minute arrays
     Avg_min_between_sent_tnx = sum(sent_minute) / len(sent_minute) if sent_minute else 0
