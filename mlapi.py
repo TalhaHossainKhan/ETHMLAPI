@@ -116,7 +116,7 @@ async def gatherPredict_data(AddressEther:str):
 
     Predict = model.predict([PredictArray])
         
-    return {"Prediction":int(Predict)}
+    return {"Prediction":int(Predict), "EtherBalance":float(total_ether_balance), "EtherTransaction": int(total_transactions_including_tnx_to_create_contract)}
 
 
 
