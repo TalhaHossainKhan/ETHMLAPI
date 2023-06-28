@@ -63,7 +63,7 @@ async def gatherPredict_data(AddressEther:str):
     received_minute = []
     sent_val = []
     received_val = []
-    for i in range(0, (len(timestamps)-1)):
+    for i in range(0, len(timestamps)):
         curr_time = timestamps[i]
         prev_time = timestamps[i]
         diff = (curr_time - prev_time).total_seconds() / 60
