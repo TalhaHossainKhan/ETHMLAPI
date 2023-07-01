@@ -57,6 +57,9 @@ async def gatherPredict_data(AddressEther:str):
         to_addresses.append(to_address)
         values.append(value_ether)
 
+    FirstTrans = timestamps[0].strftime("%Y-%m-%d")
+    LastTrans = timestamps[-1].strftime("%Y-%m-%d")
+    
     # Calculate the time difference between adjacent timestamps in minutes
     time_diff_minutes = []
     sent_minute = []
@@ -116,7 +119,11 @@ async def gatherPredict_data(AddressEther:str):
 
     Predict = model.predict([PredictArray])
         
-    return {"Prediction":int(Predict), "EtherBalance":float(total_ether_balance), "EtherTransaction": int(total_transactions_including_tnx_to_create_contract)}
+    return {"Prediction":int(Predict), 
+            "EtherBalance":float(total_ether_balance), 
+            "EtherTransaction": int(total_transactions_including_tnx_to_create_contract),
+            "FirstTransaction": str(FirstTrans),
+            "LastTransaction": str(LastTrans)}
 
 
 
