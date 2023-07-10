@@ -25,14 +25,31 @@ async def gatherPredict_data(AddressEther:str):
         "apikey": api_key
     }
 
+    params1 = {
+        "module": "account",
+        "action": "txlist",
+        "address": address,
+        "startblock": 0,
+        "endblock": 99999999,
+        "sort": "desc",
+        "page": 1,
+        "offset": 10000,
+        "apikey": api_key
+    }
+
     response = requests.get(url, params=params)
     data = response.json()
 
+    response1 = requests.get(url, params=params1)
+    data1 = response1.json()
+
     # Extracting the relevant information
     transactions = data["result"]
+    transactions1 = data1["result"]
 
     # Define empty lists to store the extracted data
     timestamps = []
+    timestamps1 = []
     from_addresses = []
     to_addresses = []
     values = []
@@ -56,9 +73,17 @@ async def gatherPredict_data(AddressEther:str):
         from_addresses.append(from_address)
         to_addresses.append(to_address)
         values.append(value_ether)
+        
+    for transaction in transactions1:
+        timestamp_unix = int(transaction["timeStamp"])
+        
+        # Convert timestamp from Unix time to datetime object
+        timestamp = datetime.utcfromtimestamp(timestamp_unix)
+
+        timestamps1.append(timestamp)
 
     FirstTrans = timestamps[0].strftime("%Y-%m-%d")
-    LastTrans = timestamps[-1].strftime("%Y-%m-%d")
+    LastTrans = timestamps1[0].strftime("%Y-%m-%d")
     
     # Calculate the time difference between adjacent timestamps in minutes
     time_diff_minutes = []
