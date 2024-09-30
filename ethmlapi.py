@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 
 app = FastAPI()
     
-@app.post("/")
+@app.get("/")
 async def gatherPredict_data(AddressEther:str):
 
     # Extracting data EtherScan API
@@ -120,7 +120,7 @@ async def gatherPredict_data(AddressEther:str):
     Predict = model.predict([PredictArray])
 
     #Returns prediction
-    return {"Prediction: ":int(Predict)}
+    return {"Prediction": int(Predict[0])}
 
 
 
